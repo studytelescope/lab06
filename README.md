@@ -1,5 +1,7 @@
 ## Laboratory work VI
 
+[![Build Status](https://travis-ci.org/thedraftaccount/lab06.svg?branch=master)](https://travis-ci.org/thedraftaccount/lab06)
+
 Данная лабораторная работа посвещена изучению средств пакетирования на примере **CPack**
 
 ```ShellSession
