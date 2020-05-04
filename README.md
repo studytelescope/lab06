@@ -17,6 +17,8 @@ $ open https://cmake.org/Wiki/CMake:CPackPackageGenerators
 
 ## Tutorial
 
+Set up environment variables
+
 ```ShellSession
 # Setting environment variables and default text editors
 $ export GITHUB_USERNAME=<имя_пользователя>
@@ -24,6 +26,7 @@ $ export GITHUB_EMAIL=<адрес_почтового_ящика>
 $ alias edit=<nano|vi|vim|subl>
 $ alias gsed=sed # for *-nix system
 ```
+Organize and get in workspace directory
 
 ```ShellSession
 # Organize of a working directory
@@ -31,6 +34,8 @@ $ cd ${GITHUB_USERNAME}/workspace
 $ pushd .
 $ source scripts/activate
 ```
+
+Get new repo on the basis of the previous one
 
 ```ShellSession
 # Get information from the remote server
@@ -46,6 +51,8 @@ $ cd projects/lab06
 $ git remote remove origin #remove origin server
 $ git remote add origin https://github.com/${GITHUB_USERNAME}/lab06 # Add origin server
 ```
+
+Update CMakeLists by version info
 
 ```ShellSession
 # Set versions of the project
@@ -90,6 +97,8 @@ index aa7a323..71b64e3 100644
 
 ```
 
+Add DESCRIPTION and ChangeLog.md to project
+
 ```ShellSession
 $ touch DESCRIPTION && edit DESCRIPTION # Packet description
 $ touch ChangeLog.md # Packet logs and changes of the last version
@@ -101,14 +110,14 @@ $ cat > ChangeLog.md <<EOF
 EOF
 ```
 
+Add CPack configuration file with version and licence information
+
 ```ShellSession
 # Writing into CPackConfig.cmake
 $ cat > CPackConfig.cmake <<EOF
 include(InstallRequiredSystemLibraries)
 EOF
-```
 
-```ShellSession
 # Writing into CPackConfig.cmake
 $ cat >> CPackConfig.cmake <<EOF
 set(CPACK_PACKAGE_CONTACT ${GITHUB_EMAIL})
@@ -120,9 +129,7 @@ set(CPACK_PACKAGE_VERSION \${PRINT_VERSION})
 set(CPACK_PACKAGE_DESCRIPTION_FILE \${CMAKE_CURRENT_SOURCE_DIR}/DESCRIPTION)
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "static C++ library for printing")
 EOF
-```
 
-```ShellSession
 # Writing into CPackConfig.cmake
 $ cat >> CPackConfig.cmake <<EOF
 
@@ -130,6 +137,8 @@ set(CPACK_RESOURCE_FILE_LICENSE \${CMAKE_CURRENT_SOURCE_DIR}/LICENSE)
 set(CPACK_RESOURCE_FILE_README \${CMAKE_CURRENT_SOURCE_DIR}/README.md)
 EOF
 ```
+
+Add Cpack package configuration
 
 ```ShellSession
 # Writing into CPackConfig.cmake
@@ -143,6 +152,8 @@ set(CPACK_RPM_PACKAGE_RELEASE 1)
 EOF
 ```
 
+Add deb package configuration
+
 ```ShellSession
 # Writing into CPackConfig.cmake
 $ cat >> CPackConfig.cmake <<EOF
@@ -152,6 +163,7 @@ set(CPACK_DEBIAN_PACKAGE_PREDEPENDS "cmake >= 3.0")
 set(CPACK_DEBIAN_PACKAGE_RELEASE 1)
 EOF
 ```
+Finish cpack configuration file
 
 ```ShellSession
 # Writing into CPackConfig.cmake
@@ -161,6 +173,8 @@ include(CPack)
 EOF
 ```
 
+Add cpack configuration to main CMakeLists.txt
+
 ```ShellSession
 # Writing into CMakeKists.txt
 $ cat >> CMakeLists.txt <<EOF
@@ -168,11 +182,7 @@ $ cat >> CMakeLists.txt <<EOF
 include(CPackConfig.cmake)
 EOF
 ```
-
-```ShellSession
-# Editing of README
-$ gsed -i 's/lab05/lab06/g' README.md
-```
+Commit and push local changes
 
 ```ShellSession
 # Commiting and pushing changes
@@ -261,6 +271,8 @@ CPack: - Install project: print
 CPack: Create package
 CPack: - package: /home/johnsnow/thedraftaccount/workspace/projects/lab06/_build/print-0.1.0.0-Linux.tar.gz generated.
 ```
+
+Update artifacts folder
 
 ```ShellSession
 # Repo with archive file
